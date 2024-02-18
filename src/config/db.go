@@ -9,7 +9,7 @@ import (
 
 var DB *gorm.DB
 
-func initDB() {
+func InitDB() {
 	url := os.Getenv("URL")
 	var err error
 	DB, err = gorm.Open("postgres", url)

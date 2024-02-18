@@ -8,59 +8,57 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func MonthList(c *gin.Context) {
-	res := models.MonthList()
+func SelectAllDay(c *gin.Context) {
+	res := models.SelectAllDay()
 	c.JSON(200, gin.H{
-		"message": "Successful",
+		"Message": "Tampil Semua Berhasil",
 		"data":    res,
 	})
 }
 
-func MonthShow(c *gin.Context) {
+func SelectDay(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	res := models.MonthDetail(id)
+	res := models.SelectDay(id)
 	c.JSON(200, gin.H{
-		"message": "Successful",
+		"Message": "Tampil Berhasil",
 		"data":    res,
 	})
 }
 
-func MonthCreate(c *gin.Context) {
-	var input models.Month
+func InsertDay(c *gin.Context) {
+	var input models.Day
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	models.MonthCreate(input.Name, input.Day)
+	models.InsertDay(input.Name)
 	c.JSON(200, gin.H{
-		"message": "created successfully",
+		"message": "Insert Berhasil",
 	})
 }
 
-func MonthUpdate(c *gin.Context) {
+func UpdateDay(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	var input models.Month
+	var input models.Day
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	models.MonthUpdate(id, input.Name, input.Day)
+	models.UpdateDay(id, input.Name)
 	c.JSON(200, gin.H{
-		"message": "Updated successfully",
+		"message": "Update Berhasil",
 	})
-
 }
 
-func MonthDestroy(c *gin.Context) {
+func DeleteDay(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	models.MonthDelete(id)
+	models.DeleteDay(id)
 	c.JSON(200, gin.H{
-		"message": "Deleted Successfully",
+		"message": "Delete Berhasil",
 	})
 }

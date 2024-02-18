@@ -1,66 +1,64 @@
 package controllers
 
 import (
-	"latihan_git/src/models"
+	"latihan-gin/src/models"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-func MonthList(c *gin.Context) {
-	res := models.MonthList()
+func SelectAllYear(c *gin.Context) {
+	res := models.SelectAllYear()
 	c.JSON(200, gin.H{
-		"message": "Successful",
+		"Message": "Tampil Semua Berhasil",
 		"data":    res,
 	})
 }
 
-func MonthShow(c *gin.Context) {
+func SelectYear(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	res := models.MonthDetail(id)
+	res := models.SelectYear(id)
 	c.JSON(200, gin.H{
-		"message": "Successful",
+		"Message": "Tampil Berhasil",
 		"data":    res,
 	})
 }
 
-func MonthCreate(c *gin.Context) {
-	var input models.Month
+func InsertYear(c *gin.Context) {
+	var input models.Year
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	models.MonthCreate(input.Name, input.Day)
+	models.InsertYear(input.Name)
 	c.JSON(200, gin.H{
-		"message": "created successfully",
+		"message": "Insert Berhasil",
 	})
 }
 
-func MonthUpdate(c *gin.Context) {
+func UpdateYear(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	var input models.Month
+	var input models.Year
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	models.MonthUpdate(id, input.Name, input.Day)
+	models.UpdateYear(id, input.Name)
 	c.JSON(200, gin.H{
-		"message": "Updated successfully",
+		"message": "Update Berhasil",
 	})
-
 }
 
-func MonthDestroy(c *gin.Context) {
+func DeleteYear(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
-	models.MonthDelete(id)
+	models.DeleteYear(id)
 	c.JSON(200, gin.H{
-		"message": "Deleted Successfully",
+		"message": "Delete Berhasil",
 	})
 }

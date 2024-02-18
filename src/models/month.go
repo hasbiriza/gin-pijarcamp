@@ -1,7 +1,7 @@
 package models
 
 import (
-	"latihan_gin_pijar/src/config"
+	"latihan_git/src/config"
 
 	"github.com/jinzhu/gorm"
 )
@@ -14,7 +14,7 @@ type Month struct {
 
 func MonthList() []Month {
 	items := []Month{}
-	config.DB.RAW("SELECT * FROM months").Scan(&items)
+	config.DB.Raw("SELECT * FROM months").Scan(&items)
 	return items
 }
 

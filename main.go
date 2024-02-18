@@ -1,13 +1,22 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"latihan_git/src/config"
+	"latihan_git/src/helpers"
+	"latihan_git/src/routes"
+
+	"github.com/subosito/gotenv"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	gotenv.Load()
+	config.InitDB()
+	helpers.Migration()
+	defer config.DB.Close()
+	routes.Router()
+	// r := gin.Default()
+	// r.GET("/ping", func(c *gin.Context) {
+	// routes.Router()
+	// })
+	// r.Run() // listen and serve on 0.0.0.0:8080
 }
