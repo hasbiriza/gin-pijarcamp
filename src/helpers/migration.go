@@ -7,4 +7,6 @@ import (
 
 func Migration() {
 	config.DB.AutoMigrate(&models.Month{})
+	config.DB.AutoMigrate(&models.Day{})
+	config.DB.AutoMigrate(&models.Year{})
 }

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"latihan_gin_pijar/src/config"
+	"latihan_git/src/config"
 
 	"github.com/jinzhu/gorm"
 )
@@ -35,7 +35,7 @@ func UpdateDay(ID int, Name string) []Day {
 	return items
 }
 
-func DeleteDay(ID Int) []Day {
+func DeleteDay(ID int) []Day {
 	items := []Day{}
 	config.DB.Raw("DELETE FROM days WHERE id = ?", ID).Scan(&items)
 	return items

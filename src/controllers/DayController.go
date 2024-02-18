@@ -11,7 +11,7 @@ import (
 func SelectAllDay(c *gin.Context) {
 	res := models.SelectAllDay()
 	c.JSON(200, gin.H{
-		"Message": "Tampil Semua Berhasil",
+		"Message": "AllDay Berhasil",
 		"data":    res,
 	})
 }
@@ -21,7 +21,7 @@ func SelectDay(c *gin.Context) {
 	id, _ := strconv.Atoi(idParam)
 	res := models.SelectDay(id)
 	c.JSON(200, gin.H{
-		"Message": "Tampil Berhasil",
+		"Message": "Show Day Berhasil",
 		"data":    res,
 	})
 }

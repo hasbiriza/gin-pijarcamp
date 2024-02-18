@@ -49,7 +49,7 @@ func Router() {
 		}
 		year := v1.Group("/year")
 		{
-			year.GET("/list", controller.SelectAllYear)
+			year.GET("/list", controllers.SelectAllYear)
 			year.GET("/:id", controllers.SelectYear)
 			year.POST("/create", controllers.InsertYear)
 			year.PUT("/update/:id", controllers.UpdateYear)

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"latihan-gin/src/models"
+	"latihan_git/src/models"
 	"net/http"
 	"strconv"
 

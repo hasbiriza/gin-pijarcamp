@@ -56,7 +56,7 @@ func MonthUpdate(c *gin.Context) {
 
 }
 
-func MonthDestroy(c *gin.Context) {
+func MonthDelete(c *gin.Context) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
 	models.MonthDelete(id)
